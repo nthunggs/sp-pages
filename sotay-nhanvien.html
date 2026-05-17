@@ -1,0 +1,1571 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sổ Tay Nhân Viên — Sport Plus</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0a0f1e;
+  --navy2: #0f1829;
+  --navy3: #162036;
+  --green: #22c55e;
+  --green2: #16a34a;
+  --green-glow: rgba(34,197,94,0.15);
+  --accent: #3b82f6;
+  --gold: #f59e0b;
+  --red: #ef4444;
+  --text: #f1f5f9;
+  --muted: #94a3b8;
+  --dim: #475569;
+  --border: #1e2d45;
+  --surface: #111c30;
+  --surface2: #162036;
+  --sidebar-w: 260px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: var(--navy);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ── SIDEBAR ── */
+.sidebar {
+  position: fixed;
+  top: 0; left: 0;
+  width: var(--sidebar-w);
+  height: 100vh;
+  background: var(--navy2);
+  border-right: 1px solid var(--border);
+  overflow-y: auto;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease;
+}
+
+.sidebar-logo {
+  padding: 24px 20px 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.sidebar-brand {
+  font-family: 'Oswald', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--green);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.sidebar-sub {
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-top: 3px;
+}
+
+.sidebar-nav {
+  padding: 16px 0;
+  flex: 1;
+}
+
+.nav-section {
+  padding: 6px 20px 4px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--dim);
+  margin-top: 8px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 20px;
+  font-size: 13px;
+  color: var(--muted);
+  text-decoration: none;
+  border-left: 2px solid transparent;
+  transition: all 0.15s;
+  cursor: pointer;
+}
+
+.nav-item:hover {
+  color: var(--text);
+  background: rgba(255,255,255,0.03);
+  border-left-color: var(--green);
+}
+
+.nav-item.active {
+  color: var(--green);
+  background: var(--green-glow);
+  border-left-color: var(--green);
+  font-weight: 600;
+}
+
+.nav-num {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--dim);
+  width: 18px;
+  flex-shrink: 0;
+  font-family: monospace;
+}
+
+.sidebar-footer {
+  padding: 16px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 10px;
+  color: var(--dim);
+  line-height: 1.5;
+}
+
+/* ── MAIN ── */
+.main {
+  margin-left: var(--sidebar-w);
+  min-height: 100vh;
+}
+
+/* ── HERO ── */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 60px 40px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #0a0f1e 0%, #0f1f0f 50%, #0a0f1e 100%);
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(34,197,94,0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 20% 80%, rgba(59,130,246,0.08) 0%, transparent 50%);
+}
+
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(34,197,94,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34,197,94,0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.hero-content { position: relative; z-index: 1; max-width: 600px; }
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(34,197,94,0.1);
+  border: 1px solid rgba(34,197,94,0.3);
+  border-radius: 100px;
+  padding: 6px 14px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--green);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 28px;
+}
+
+.hero h1 {
+  font-family: 'Oswald', sans-serif;
+  font-size: clamp(42px, 8vw, 72px);
+  font-weight: 700;
+  line-height: 1.0;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.hero h1 .green { color: var(--green); }
+
+.hero-tagline {
+  font-size: 14px;
+  color: var(--muted);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 32px;
+  font-weight: 500;
+}
+
+.hero-divider {
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--green), transparent);
+  margin: 0 auto 32px;
+}
+
+.hero-meta {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.hero-meta-item {
+  text-align: center;
+}
+
+.hero-meta-num {
+  font-family: 'Oswald', sans-serif;
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--green);
+  display: block;
+}
+
+.hero-meta-label {
+  font-size: 11px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.hero-scroll {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: var(--dim);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%,100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(6px); }
+}
+
+/* ── SECTIONS ── */
+.section {
+  padding: 80px 60px;
+  border-bottom: 1px solid var(--border);
+  max-width: 900px;
+}
+
+.section-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.chapter-badge {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Oswald', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.section-titles { flex: 1; }
+
+.chapter-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.section-title {
+  font-family: 'Oswald', sans-serif;
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1.2;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+/* ── WELCOME ── */
+.welcome-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px;
+  position: relative;
+  overflow: hidden;
+}
+
+.welcome-card::before {
+  content: '"';
+  position: absolute;
+  top: -10px;
+  left: 20px;
+  font-size: 120px;
+  font-family: Georgia, serif;
+  color: rgba(34,197,94,0.08);
+  line-height: 1;
+}
+
+.welcome-text {
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--muted);
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.welcome-text strong { color: var(--text); }
+
+.welcome-quote {
+  border-left: 3px solid var(--green);
+  padding: 14px 20px;
+  background: var(--green-glow);
+  border-radius: 0 10px 10px 0;
+  font-size: 14px;
+  font-style: italic;
+  color: var(--text);
+  line-height: 1.7;
+  margin: 20px 0;
+}
+
+.welcome-sign {
+  text-align: right;
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 16px;
+}
+
+/* ── INFO TABLE ── */
+.info-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 16px;
+}
+
+.info-table td {
+  padding: 12px 16px;
+  font-size: 13px;
+  border-bottom: 1px solid var(--border);
+}
+
+.info-table tr:last-child td { border-bottom: none; }
+
+.info-table td:first-child {
+  color: var(--muted);
+  font-weight: 500;
+  width: 40%;
+  background: rgba(255,255,255,0.02);
+}
+
+.info-table td:last-child { color: var(--text); }
+
+.info-table a { color: var(--green); text-decoration: none; }
+
+/* ── CORE VALUES ── */
+.values-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.value-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 18px 20px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  transition: border-color 0.2s;
+}
+
+.value-card:hover { border-color: var(--green); }
+
+.value-num {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: var(--green-glow);
+  border: 1px solid rgba(34,197,94,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Oswald', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--green);
+}
+
+.value-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.value-desc {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* ── 3P SALARY ── */
+.salary-3p {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.p-card {
+  border-radius: 14px;
+  padding: 20px;
+  border: 1px solid;
+  text-align: center;
+}
+
+.p-label {
+  font-family: 'Oswald', sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.p-name {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.p-desc {
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.salary-formula {
+  text-align: center;
+  padding: 16px;
+  background: var(--surface);
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  margin-bottom: 20px;
+}
+
+.salary-formula .formula {
+  font-family: 'Oswald', sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--green);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.salary-formula .tagline {
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+}
+
+/* ── BONUS TABLE ── */
+.bonus-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  margin-top: 16px;
+}
+
+.bonus-table th {
+  background: rgba(34,197,94,0.08);
+  border: 1px solid rgba(34,197,94,0.2);
+  padding: 10px 14px;
+  text-align: left;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--green);
+}
+
+.bonus-table td {
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  color: var(--muted);
+}
+
+.bonus-table td:last-child {
+  font-weight: 700;
+  color: var(--gold);
+  font-family: monospace;
+}
+
+.bonus-table tr:nth-child(odd) td {
+  background: rgba(255,255,255,0.01);
+}
+
+/* ── BENEFITS GRID ── */
+.benefits-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.benefit-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px;
+  background: var(--surface);
+  border-radius: 10px;
+  border: 1px solid var(--border);
+}
+
+.benefit-icon { font-size: 20px; flex-shrink: 0; }
+
+.benefit-name {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 2px;
+}
+
+.benefit-desc {
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+/* ── 5W1H MEETING ── */
+.meeting-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.meeting-row {
+  display: flex;
+  gap: 14px;
+  padding: 14px 16px;
+  background: var(--surface);
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  align-items: flex-start;
+}
+
+.meeting-key {
+  font-family: 'Oswald', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--green);
+  min-width: 90px;
+  flex-shrink: 0;
+  padding-top: 1px;
+}
+
+.meeting-val {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.meeting-principle {
+  margin-top: 12px;
+  padding: 12px 16px;
+  background: rgba(34,197,94,0.05);
+  border: 1px solid rgba(34,197,94,0.2);
+  border-radius: 10px;
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.meeting-principle strong { color: var(--green); }
+
+/* ── SCHEDULE ── */
+.schedule-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.schedule-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+}
+
+.schedule-day {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.schedule-time {
+  font-family: 'Oswald', sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--green);
+}
+
+/* ── LATE FEE TABLE ── */
+.late-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  margin-top: 16px;
+}
+
+.late-table th {
+  background: rgba(245,158,11,0.08);
+  border: 1px solid rgba(245,158,11,0.2);
+  padding: 8px 12px;
+  text-align: center;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--gold);
+}
+
+.late-table td {
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  text-align: center;
+  color: var(--muted);
+}
+
+.late-table td:last-child {
+  color: var(--gold);
+  font-weight: 600;
+  font-family: monospace;
+}
+
+.late-table tr:nth-child(odd) td { background: rgba(255,255,255,0.01); }
+
+/* ── WARNING SYSTEM ── */
+.warning-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin: 20px 0;
+  position: relative;
+}
+
+.warning-steps::before {
+  content: '';
+  position: absolute;
+  left: 23px;
+  top: 24px;
+  bottom: 24px;
+  width: 2px;
+  background: var(--border);
+}
+
+.warning-step {
+  display: flex;
+  gap: 16px;
+  padding: 16px 0;
+  position: relative;
+}
+
+.warning-dot {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 14px;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+  border: 2px solid;
+}
+
+.warning-content { flex: 1; padding-top: 6px; }
+
+.warning-title {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.warning-desc {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.w1 .warning-dot { background: rgba(34,197,94,0.1); border-color: var(--green); color: var(--green); }
+.w1 .warning-title { color: var(--green); }
+.w2 .warning-dot { background: rgba(245,158,11,0.1); border-color: var(--gold); color: var(--gold); }
+.w2 .warning-title { color: var(--gold); }
+.w3 .warning-dot { background: rgba(239,68,68,0.1); border-color: var(--red); color: var(--red); }
+.w3 .warning-title { color: var(--red); }
+
+/* ── CONSEQUENCE TABLE ── */
+.consequence-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  margin: 16px 0;
+}
+
+.consequence-table th {
+  background: rgba(239,68,68,0.08);
+  border: 1px solid rgba(239,68,68,0.2);
+  padding: 10px 14px;
+  text-align: left;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--red);
+}
+
+.consequence-table td {
+  padding: 11px 14px;
+  border: 1px solid var(--border);
+  color: var(--muted);
+}
+
+.consequence-table td:first-child {
+  font-weight: 700;
+  color: var(--text);
+  text-align: center;
+}
+
+/* ── SIGN PAGE ── */
+.sign-section {
+  padding: 80px 60px;
+  max-width: 900px;
+}
+
+.sign-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 48px;
+  text-align: center;
+}
+
+.sign-title {
+  font-family: 'Oswald', sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.sign-sub {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 40px;
+  line-height: 1.6;
+}
+
+.sign-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  text-align: left;
+}
+
+.sign-field {
+  border-bottom: 1px solid var(--dim);
+  padding-bottom: 8px;
+}
+
+.sign-field-label {
+  font-size: 11px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 24px;
+}
+
+/* ── SUBSECTION TITLE ── */
+.sub-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+  margin: 28px 0 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sub-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* ── LIST ── */
+.styled-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 12px 0;
+}
+
+.styled-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.6;
+  list-style: none;
+}
+
+.styled-list li::before {
+  content: '→';
+  color: var(--green);
+  font-size: 12px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* ── LEVEL TRACK ── */
+.level-track {
+  display: flex;
+  gap: 8px;
+  margin: 16px 0;
+}
+
+.level-step {
+  flex: 1;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 12px;
+  text-align: center;
+}
+
+.level-num {
+  font-family: 'Oswald', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--green);
+  display: block;
+}
+
+.level-name {
+  font-size: 10px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* ── LARK FLOW ── */
+.lark-flow {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 16px 0;
+}
+
+.lark-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px 16px;
+  background: var(--surface);
+  border-radius: 10px;
+  border: 1px solid var(--border);
+}
+
+.lark-step-num {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: var(--green-glow);
+  border: 1px solid rgba(34,197,94,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--green);
+  flex-shrink: 0;
+}
+
+.lark-step-phase {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 3px;
+}
+
+.lark-step-desc {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+/* ── HAMBURGER ── */
+.hamburger {
+  display: none;
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  z-index: 200;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--navy2);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.hamburger span {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: all 0.2s;
+}
+
+.overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 90;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  .overlay.open { display: block; }
+  .hamburger { display: flex; }
+
+  .main { margin-left: 0; }
+
+  .section, .sign-section {
+    padding: 60px 24px;
+  }
+
+  .salary-3p { grid-template-columns: 1fr; }
+  .benefits-grid { grid-template-columns: 1fr; }
+  .schedule-cards { grid-template-columns: 1fr; }
+  .sign-fields { grid-template-columns: 1fr; }
+  .hero { padding: 80px 24px 60px; }
+}
+
+/* ── DIVIDER ── */
+.divider { height: 1px; background: var(--border); margin: 24px 0; }
+
+/* ── TAG ── */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 600;
+  background: var(--green-glow);
+  border: 1px solid rgba(34,197,94,0.25);
+  color: var(--green);
+}
+
+/* ── FLOW PROCESS ── */
+.process-flow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin: 12px 0;
+  padding: 14px 16px;
+  background: var(--surface);
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  font-size: 12px;
+}
+
+.process-step {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 4px 10px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.process-arrow { color: var(--green); font-size: 14px; }
+
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-logo">
+    <div class="sidebar-brand">Sport Plus</div>
+    <div class="sidebar-sub">Sổ tay nhân viên · 2026</div>
+  </div>
+  <div class="sidebar-nav">
+    <div class="nav-section">Tổng quan</div>
+    <a class="nav-item active" href="#hero"><span class="nav-num">✦</span>Trang bìa</a>
+    <a class="nav-item" href="#welcome"><span class="nav-num">★</span>Lời chào mừng</a>
+    <div class="nav-section">Các chương</div>
+    <a class="nav-item" href="#ch1"><span class="nav-num">01</span>Giới thiệu</a>
+    <a class="nav-item" href="#ch2"><span class="nav-num">02</span>Tầm nhìn & Giá trị</a>
+    <a class="nav-item" href="#ch3"><span class="nav-num">03</span>Lương & Phúc lợi</a>
+    <a class="nav-item" href="#ch4"><span class="nav-num">04</span>Văn hóa làm việc</a>
+    <a class="nav-item" href="#ch5"><span class="nav-num">05</span>Quy định chung</a>
+    <a class="nav-item" href="#ch6"><span class="nav-num">06</span>Kỷ luật lao động</a>
+    <div class="nav-section">Cam kết</div>
+    <a class="nav-item" href="#sign"><span class="nav-num">✓</span>Ký xác nhận</a>
+  </div>
+  <div class="sidebar-footer">
+    🔒 Tài liệu lưu hành nội bộ<br>
+    Sport Plus · Hà Nội · 2026
+  </div>
+</nav>
+
+<div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
+
+<button class="hamburger" onclick="toggleSidebar()">
+  <span></span><span></span><span></span>
+</button>
+
+<!-- MAIN -->
+<main class="main">
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-grid"></div>
+    <div class="hero-content">
+      <div class="hero-badge">🏋️ Tài liệu lưu hành nội bộ</div>
+      <h1>SỔ TAY<br><span class="green">NHÂN VIÊN</span></h1>
+      <div class="hero-tagline">Elevate Our Life</div>
+      <div class="hero-divider"></div>
+      <div class="hero-meta">
+        <div class="hero-meta-item">
+          <span class="hero-meta-num">6</span>
+          <span class="hero-meta-label">Chương</span>
+        </div>
+        <div class="hero-meta-item">
+          <span class="hero-meta-num">5</span>
+          <span class="hero-meta-label">Giá trị cốt lõi</span>
+        </div>
+        <div class="hero-meta-item">
+          <span class="hero-meta-num">3P</span>
+          <span class="hero-meta-label">Mô hình lương</span>
+        </div>
+        <div class="hero-meta-item">
+          <span class="hero-meta-num">2026</span>
+          <span class="hero-meta-label">Hà Nội</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-scroll">↓ Cuộn xuống</div>
+  </section>
+
+  <!-- WELCOME -->
+  <section class="section" id="welcome">
+    <div class="section-header">
+      <div class="chapter-badge" style="background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.3);color:var(--green);">★</div>
+      <div class="section-titles">
+        <div class="chapter-label" style="color:var(--green);">Phần mở đầu</div>
+        <div class="section-title">Lời Chào Mừng Từ Ban Giám Đốc</div>
+      </div>
+    </div>
+    <div class="welcome-card">
+      <p class="welcome-text">Chào mừng bạn đến với <strong>Sport Plus!</strong></p>
+      <p class="welcome-text">Ngày hôm nay, bạn không chỉ bắt đầu một công việc mới — bạn đang gia nhập một đội ngũ đang viết tiếp hành trình <strong>xây dựng thương hiệu Việt Nam vươn tầm Đông Nam Á</strong> trong lĩnh vực phong cách sống hiệu suất cao.</p>
+      <p class="welcome-text">Chúng tôi không tuyển dụng nhân viên — <strong>chúng tôi kết nạp thành viên.</strong> Mỗi người gia nhập Sport Plus đều mang trong mình một phần sứ mệnh chung: trao quyền cho mọi người sống khỏe hơn, mạnh mẽ hơn và có mục đích hơn.</p>
+      <div class="welcome-quote">
+        "Chúng tôi không chỉ trả lương cho công việc bạn làm — chúng tôi đầu tư vào tương lai mà bạn sẽ đạt tới."
+      </div>
+      <div class="welcome-sign">— Ban Giám đốc Sport Plus</div>
+    </div>
+  </section>
+
+  <!-- CHAPTER 1 -->
+  <section class="section" id="ch1">
+    <div class="section-header">
+      <div class="chapter-badge" style="background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.3);color:var(--accent);">01</div>
+      <div class="section-titles">
+        <div class="chapter-label" style="color:var(--accent);">Chương 1</div>
+        <div class="section-title">Giới Thiệu Về Sport Plus</div>
+      </div>
+    </div>
+
+    <div class="sub-title">Thông tin chung</div>
+    <table class="info-table" style="background:var(--surface);border-radius:12px;overflow:hidden;border:1px solid var(--border);">
+      <tr><td>Tên công ty</td><td><strong>SPORTS PLUS</strong></td></tr>
+      <tr><td>Lĩnh vực</td><td>Thực phẩm chức năng & Phong cách sống hiệu suất</td></tr>
+      <tr><td>Địa chỉ</td><td>Số 4, Ngõ 133 Thái Hà, Trung Liệt, Đống Đa, Hà Nội</td></tr>
+      <tr><td>Website</td><td><a href="https://gymstore.vn" target="_blank">gymstore.vn</a></td></tr>
+      <tr><td>Hotline</td><td>+84 24 3222 2996</td></tr>
+    </table>
+
+    <div class="sub-title" style="margin-top:32px;">Cơ cấu tổ chức</div>
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:24px;text-align:center;">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:0;">
+        <!-- CEO -->
+        <div style="background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.3);border-radius:10px;padding:10px 24px;font-weight:700;color:var(--green);font-size:13px;">Ban Giám Đốc</div>
+        <div style="width:2px;height:20px;background:var(--border);"></div>
+        <!-- Departments row -->
+        <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;">
+          <div style="display:flex;flex-direction:column;align-items:center;gap:0;">
+            <div style="width:2px;height:20px;background:var(--border);"></div>
+            <div style="background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:8px 14px;font-size:12px;color:var(--muted);">Marketing</div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:0;">
+            <div style="width:2px;height:20px;background:var(--border);"></div>
+            <div style="background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:8px 14px;font-size:12px;color:var(--muted);">Sales</div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:0;">
+            <div style="width:2px;height:20px;background:var(--border);"></div>
+            <div style="background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:8px 14px;font-size:12px;color:var(--muted);">Operations</div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:0;">
+            <div style="width:2px;height:20px;background:var(--border);"></div>
+            <div style="background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:8px 14px;font-size:12px;color:var(--muted);">Nhân sự</div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:0;">
+            <div style="width:2px;height:20px;background:var(--border);"></div>
+            <div style="background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:8px 14px;font-size:12px;color:var(--muted);">Kế toán</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHAPTER 2 -->
+  <section class="section" id="ch2">
+    <div class="section-header">
+      <div class="chapter-badge" style="background:rgba(167,139,250,0.1);border:1px solid rgba(167,139,250,0.3);color:#a78bfa;">02</div>
+      <div class="section-titles">
+        <div class="chapter-label" style="color:#a78bfa;">Chương 2</div>
+        <div class="section-title">Tầm Nhìn, Sứ Mệnh & Giá Trị Cốt Lõi</div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:32px;">
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px;">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#a78bfa;margin-bottom:8px;">🎯 Tầm nhìn</div>
+        <p style="font-size:13px;color:var(--muted);line-height:1.7;">Trở thành nền tảng về <strong style="color:var(--text);">phong cách sống hiệu suất</strong> đáng tin cậy nhất Đông Nam Á — trao quyền cho mọi người chinh phục các mục tiêu về sức khỏe thể chất và tinh thần.</p>
+      </div>
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px;">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#a78bfa;margin-bottom:8px;">🚀 Sứ mệnh</div>
+        <p style="font-size:13px;color:var(--muted);line-height:1.7;">Tận tâm cống hiến những sản phẩm <strong style="color:var(--text);">chính hãng, chất lượng cao</strong>, nuôi dưỡng mối quan hệ với khách hàng bằng sự tận tâm và trung thực.</p>
+      </div>
+    </div>
+
+    <div class="sub-title">5 Giá trị cốt lõi — DNA của Sport Plus</div>
+    <div class="values-grid">
+      <div class="value-card">
+        <div class="value-num">01</div>
+        <div>
+          <div class="value-name">🎯 Khách Hàng Là Trọng Tâm</div>
+          <div class="value-desc">Mọi thứ bắt đầu và kết thúc vì khách hàng. Chúng ta tồn tại để phục vụ và mang lại giá trị vượt trội.</div>
+        </div>
+      </div>
+      <div class="value-card">
+        <div class="value-num">02</div>
+        <div>
+          <div class="value-name">📚 Learn to Lead — Học Tập Để Dẫn Đầu</div>
+          <div class="value-desc">Không ngừng học hỏi, không ngại thử nghiệm và sai lầm để vươn lên phía trước trong mọi hoàn cảnh.</div>
+        </div>
+      </div>
+      <div class="value-card">
+        <div class="value-num">03</div>
+        <div>
+          <div class="value-name">⚡ Chủ Động Kiến Tạo Giá Trị</div>
+          <div class="value-desc">Chủ động tìm kiếm vấn đề, đề xuất giải pháp và tạo ra giá trị cho mục tiêu chung.</div>
+        </div>
+      </div>
+      <div class="value-card">
+        <div class="value-num">04</div>
+        <div>
+          <div class="value-name">🛡️ Chính Trực Trong Hành Động</div>
+          <div class="value-desc">Làm điều đúng đắn, ngay cả khi không ai nhìn thấy. Trung thực minh bạch với khách hàng, đối tác, đồng nghiệp.</div>
+        </div>
+      </div>
+      <div class="value-card">
+        <div class="value-num">05</div>
+        <div>
+          <div class="value-name">🤝 Một Đội Ngũ, Một Mục Tiêu</div>
+          <div class="value-desc">Đoàn kết, hỗ trợ, tôn trọng sự khác biệt ngay cả khi tranh luận.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHAPTER 3 -->
+  <section class="section" id="ch3">
+    <div class="section-header">
+      <div class="chapter-badge" style="background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.3);color:var(--green);">03</div>
+      <div class="section-titles">
+        <div class="chapter-label" style="color:var(--green);">Chương 3</div>
+        <div class="section-title">Chính Sách Nhân Sự & Phúc Lợi</div>
+      </div>
+    </div>
+
+    <div class="sub-title">Mô hình lương 3P</div>
+    <div class="salary-formula">
+      <span class="formula">Thu nhập = P1 + P2 + P3</span>
+      <span class="tagline">Công bằng · Minh bạch · Ghi nhận</span>
+    </div>
+    <div class="salary-3p">
+      <div class="p-card" style="border-color:rgba(59,130,246,0.3);background:rgba(59,130,246,0.05);">
+        <span class="p-label" style="color:var(--accent);">P1</span>
+        <span class="p-name" style="color:var(--accent);">Position</span>
+        <p class="p-desc" style="color:var(--muted);">Lương vị trí — phản ánh trách nhiệm và tầm quan trọng của vai trò</p>
+      </div>
+      <div class="p-card" style="border-color:rgba(167,139,250,0.3);background:rgba(167,139,250,0.05);">
+        <span class="p-label" style="color:#a78bfa;">P2</span>
+        <span class="p-name" style="color:#a78bfa;">Person</span>
+        <p class="p-desc" style="color:var(--muted);">Lương năng lực — chuyên môn, thâm niên, AI Competency</p>
+      </div>
+      <div class="p-card" style="border-color:rgba(34,197,94,0.3);background:rgba(34,197,94,0.05);">
+        <span class="p-label" style="color:var(--green);">P3</span>
+        <span class="p-name" style="color:var(--green);">Performance</span>
+        <p class="p-desc" style="color:var(--muted);">Thưởng hiệu suất — % KPI × mức thưởng vị trí</p>
+      </div>
+    </div>
+    <p style="font-size:12px;color:var(--dim);margin-top:8px;">💳 Lương thanh toán từ ngày 10–12 hàng tháng qua tài khoản ngân hàng đăng ký.</p>
+
+    <div class="sub-title" style="margin-top:32px;">Lộ trình phát triển — 4 Level</div>
+    <div class="level-track">
+      <div class="level-step"><span class="level-num">L1</span><span class="level-name">Junior</span></div>
+      <div class="level-step"><span class="level-num">L2</span><span class="level-name">Mid</span></div>
+      <div class="level-step"><span class="level-num">L3</span><span class="level-name">Senior</span></div>
+      <div class="level-step"><span class="level-num">L4</span><span class="level-name">Lead</span></div>
+    </div>
+    <ul class="styled-list">
+      <li>Đánh giá định kỳ 1 lần/tháng với quản lý — thang điểm 100</li>
+      <li>Xét tăng Level theo quý — tổng hợp điểm trung bình 3 tháng</li>
+      <li>Điều kiện tăng Level: đạt điểm + không vi phạm kỷ luật + không có Written Warning</li>
+    </ul>
+
+    <div class="sub-title" style="margin-top:32px;">Thưởng Lễ / Tết</div>
+    <table class="bonus-table">
+      <tr><th>Nhóm</th><th>Thâm niên</th><th>Mức thưởng</th></tr>
+      <tr><td>Quản lý</td><td>≥ 3 năm</td><td>1.000.000 ₫</td></tr>
+      <tr><td>Quản lý</td><td>&lt; 3 năm</td><td>500.000 ₫</td></tr>
+      <tr><td>Nhân viên chính thức</td><td>≥ 4 năm</td><td>1.000.000 ₫</td></tr>
+      <tr><td>Nhân viên chính thức</td><td>1–4 năm</td><td>500.000 ₫</td></tr>
+      <tr><td>Nhân viên chính thức</td><td>&lt; 1 năm</td><td>300.000 ₫</td></tr>
+      <tr><td>Part-time</td><td>≥ 2 năm</td><td>500.000 ₫</td></tr>
+      <tr><td>Part-time</td><td>&lt; 2 năm</td><td>300.000 ₫</td></tr>
+    </table>
+    <p style="font-size:11px;color:var(--dim);margin-top:8px;">* Nhân sự thử việc chưa áp dụng thưởng lễ/tết.</p>
+
+    <div class="sub-title" style="margin-top:32px;">Phúc lợi khác</div>
+    <div class="benefits-grid">
+      <div class="benefit-item"><span class="benefit-icon">🎁</span><div><div class="benefit-name">Thưởng tháng 13</div><div class="benefit-desc">Phụ thuộc tình hình kinh doanh — thông báo cuối năm</div></div></div>
+      <div class="benefit-item"><span class="benefit-icon">💍</span><div><div class="benefit-name">Chế độ Hiếu / Hỉ</div><div class="benefit-desc">Trợ cấp kết hôn, tang chế, sinh con</div></div></div>
+      <div class="benefit-item"><span class="benefit-icon">🎂</span><div><div class="benefit-name">Thưởng sinh nhật</div><div class="benefit-desc">Quà tặng hoặc tiền mặt trong tháng sinh nhật</div></div></div>
+      <div class="benefit-item"><span class="benefit-icon">🏥</span><div><div class="benefit-name">Bảo hiểm xã hội</div><div class="benefit-desc">BHXH, BHYT, BHTN đầy đủ theo quy định Nhà nước</div></div></div>
+      <div class="benefit-item"><span class="benefit-icon">🏖️</span><div><div class="benefit-name">Nghỉ phép năm</div><div class="benefit-desc">12 ngày/năm cho nhân sự chính thức ≥ 12 tháng</div></div></div>
+      <div class="benefit-item"><span class="benefit-icon">🎉</span><div><div class="benefit-name">Hoạt động nội bộ</div><div class="benefit-desc">Du lịch, team building, sinh nhật hàng tháng</div></div></div>
+    </div>
+
+    <div class="sub-title" style="margin-top:32px;">Đào tạo & Phát triển</div>
+    <ul class="styled-list">
+      <li><strong style="color:var(--text);">Đào tạo nội bộ:</strong> Training, workshop và chia sẻ kiến thức liên bộ phận định kỳ</li>
+      <li><strong style="color:var(--text);">Hỗ trợ học tập bên ngoài:</strong> Chi phí các khóa học phù hợp công việc (theo phê duyệt BGĐ)</li>
+      <li><strong style="color:var(--text);">AI Competency:</strong> Hỗ trợ công cụ AI và khuyến khích ứng dụng AI vào tối ưu hóa công việc hàng ngày</li>
+    </ul>
+  </section>
+
+  <!-- CHAPTER 4 -->
+  <section class="section" id="ch4">
+    <div class="section-header">
+      <div class="chapter-badge" style="background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.3);color:var(--gold);">04</div>
+      <div class="section-titles">
+        <div class="chapter-label" style="color:var(--gold);">Chương 4</div>
+        <div class="section-title">Văn Hóa Giao Tiếp & Làm Việc Số</div>
+      </div>
+    </div>
+
+    <div style="background:rgba(245,158,11,0.05);border:1px solid rgba(245,158,11,0.2);border-radius:12px;padding:18px 20px;margin-bottom:24px;">
+      <div style="font-size:13px;font-weight:700;color:var(--gold);margin-bottom:6px;">🔶 Lark — Nền tảng giao tiếp chính thức</div>
+      <p style="font-size:13px;color:var(--muted);line-height:1.7;">Lark là <strong style="color:var(--text);">Single Source of Truth</strong> tại Sport Plus. Mọi trao đổi, phê duyệt và quản lý nhiệm vụ đều thực hiện trên Lark để đảm bảo minh bạch và lưu trữ lâu dài.</p>
+    </div>
+
+    <div class="sub-title">Quy trình xử lý công việc trên Lark</div>
+    <div class="lark-flow">
+      <div class="lark-step">
+        <div class="lark-step-num">1</div>
+        <div><div class="lark-step-phase">Nhận task</div><div class="lark-step-desc">Xác nhận đã nhận (👍 / "Đã nhận thông tin"). Hỏi lại ngay nếu chưa rõ mục tiêu hoặc deadline.</div></div>
+      </div>
+      <div class="lark-step">
+        <div class="lark-step-num">2</div>
+        <div><div class="lark-step-phase">Thực hiện</div><div class="lark-step-desc">Tạo task trên Lark Base để theo dõi. Chủ động cập nhật tiến độ khi phát sinh thay đổi hoặc rủi ro.</div></div>
+      </div>
+      <div class="lark-step">
+        <div class="lark-step-num">3</div>
+        <div><div class="lark-step-phase">Hoàn thành</div><div class="lark-step-desc">Cập nhật trạng thái trên Lark Base và xác nhận lại với người giao việc.</div></div>
+      </div>
+    </div>
+
+    <div class="sub-title" style="margin-top:32px;">Quy tắc tổ chức họp — Khung 5W1H</div>
+    <div class="meeting-grid">
+      <div class="meeting-row"><div class="meeting-key">WHAT</div><div class="meeting-val">Xác định rõ vấn đề / mục tiêu. Agenda liệt kê cụ thể từng đầu mục.</div></div>
+      <div class="meeting-row"><div class="meeting-key">WHY</div><div class="meeting-val">Làm rõ lý do họp. Chỉ họp khi thực sự cần — ưu tiên xử lý qua chat/task.</div></div>
+      <div class="meeting-row"><div class="meeting-key">WHO</div><div class="meeting-val">Mời đúng người: ra quyết định, thực thi, liên quan trực tiếp. Tránh mời thừa.</div></div>
+      <div class="meeting-row"><div class="meeting-key">WHEN</div><div class="meeting-val">Ghi rõ giờ bắt đầu – kết thúc. Đặt lịch Lark trước ít nhất 4 tiếng. Tất cả đúng giờ.</div></div>
+      <div class="meeting-row"><div class="meeting-key">WHERE</div><div class="meeting-val">Ghi rõ phòng họp (offline) hoặc link (online). Chuẩn bị đầy đủ thiết bị và tài liệu.</div></div>
+      <div class="meeting-row"><div class="meeting-key">HOW</div><div class="meeting-val">Trước: gửi agenda. Trong: host kiểm soát thời gian. Sau: biên bản + Action Items trên Lark Base.</div></div>
+    </div>
+    <div class="meeting-principle">
+      <strong>Nguyên tắc bắt buộc:</strong> Rõ mục tiêu trước khi họp · Đúng giờ · Không họp nếu có thể dùng chat/task · Kết thúc phải có kết luận và hành động cụ thể.
+    </div>
+  </section>
+
+  <!-- CHAPTER 5 -->
+  <section class="section" id="ch5">
+    <div class="section-header">
+      <div class="chapter-badge" style="background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.3);color:var(--accent);">05</div>
+      <div class="section-titles">
+        <div class="chapter-label" style="color:var(--accent);">Chương 5</div>
+        <div class="section-title">Quy Định Chung Tại Nơi Làm Việc</div>
+      </div>
+    </div>
+
+    <div class="sub-title">Thời gian làm việc</div>
+    <div class="schedule-cards">
+      <div class="schedule-card">
+        <div class="schedule-day">☀️ Thứ 2 – Thứ 6</div>
+        <div class="schedule-time">08:30 – 17:30</div>
+      </div>
+      <div class="schedule-card">
+        <div class="schedule-day">📅 Thứ 7 (buổi sáng)</div>
+        <div class="schedule-time">08:30 – 12:30</div>
+      </div>
+    </div>
+    <ul class="styled-list">
+      <li>Nghỉ trưa: 12:30 – 13:30</li>
+      <li>Check-in/Check-out trên Lark hoặc máy chấm công khi đến và rời văn phòng</li>
+      <li>Quên chấm công: tạo <strong style="color:var(--text);">Phiếu điều chỉnh chấm công</strong> trên Lark Base, cần Quản lý phê duyệt</li>
+    </ul>
+
+    <div class="sub-title" style="margin-top:32px;">⏰ Biểu phí xử lý đi muộn</div>
+    <table class="late-table">
+      <tr><th>Số phút đi muộn</th><th>Mức phí (VNĐ)</th><th>Số phút đi muộn</th><th>Mức phí (VNĐ)</th></tr>
+      <tr><td>1 – 5 phút</td><td>10.000 ₫</td><td>46 – 50 phút</td><td>100.000 ₫</td></tr>
+      <tr><td>6 – 10 phút</td><td>20.000 ₫</td><td>51 – 55 phút</td><td>110.000 ₫</td></tr>
+      <tr><td>11 – 15 phút</td><td>30.000 ₫</td><td>56 – 60 phút</td><td>120.000 ₫</td></tr>
+      <tr><td>16 – 20 phút</td><td>40.000 ₫</td><td>61 – 65 phút</td><td>130.000 ₫</td></tr>
+      <tr><td>21 – 25 phút</td><td>50.000 ₫</td><td>66 – 70 phút</td><td>140.000 ₫</td></tr>
+      <tr><td>26 – 30 phút</td><td>60.000 ₫</td><td>71 – 75 phút</td><td>150.000 ₫</td></tr>
+      <tr><td>31 – 35 phút</td><td>70.000 ₫</td><td>76 – 80 phút</td><td>160.000 ₫</td></tr>
+      <tr><td>36 – 40 phút</td><td>80.000 ₫</td><td>81 – 85 phút</td><td>170.000 ₫</td></tr>
+      <tr><td>41 – 45 phút</td><td>90.000 ₫</td><td>86 – 90 phút</td><td>180.000 ₫</td></tr>
+    </table>
+
+    <div class="sub-title" style="margin-top:32px;">Nghỉ phép</div>
+    <ul class="styled-list">
+      <li><strong style="color:var(--text);">12 ngày/năm</strong> cho nhân sự chính thức ≥ 12 tháng</li>
+      <li>Nhân sự mới: tính theo số tháng làm việc thực tế</li>
+      <li>Thử việc: không có phép, được cộng dồn khi lên chính thức</li>
+    </ul>
+
+    <div class="sub-title" style="margin-top:24px;">Quy trình xin nghỉ</div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--surface);border-radius:10px;border:1px solid var(--border);">
+        <span style="font-size:13px;color:var(--text);font-weight:600;">Nghỉ 1–2 ngày</span>
+        <span style="font-size:12px;color:var(--muted);">Trước 1 ngày làm việc</span>
+      </div>
+      <div class="process-flow">
+        <span class="process-step">Lark</span><span class="process-arrow">→</span>
+        <span class="process-step">Quản lý duyệt</span><span class="process-arrow">→</span>
+        <span class="process-step">CC Nhân sự & BGĐ</span><span class="process-arrow">→</span>
+        <span class="process-step">Nhân sự lưu hồ sơ</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--surface);border-radius:10px;border:1px solid var(--border);margin-top:8px;">
+        <span style="font-size:13px;color:var(--text);font-weight:600;">Nghỉ ≥ 3 ngày</span>
+        <span style="font-size:12px;color:var(--muted);">Trước 3 ngày làm việc</span>
+      </div>
+      <div class="process-flow">
+        <span class="process-step">Lark</span><span class="process-arrow">→</span>
+        <span class="process-step">Quản lý duyệt</span><span class="process-arrow">→</span>
+        <span class="process-step">BGĐ xem xét</span><span class="process-arrow">→</span>
+        <span class="process-step">Nhân sự xác nhận</span>
+      </div>
+    </div>
+
+    <div class="sub-title">Trang phục & Đồng phục</div>
+    <ul class="styled-list">
+      <li>Mặc <strong style="color:var(--text);">đồng phục công ty vào Thứ 2</strong> hàng tuần</li>
+      <li>Các ngày còn lại: trang phục gọn gàng, lịch sự, phù hợp môi trường làm việc chuyên nghiệp</li>
+    </ul>
+  </section>
+
+  <!-- CHAPTER 6 -->
+  <section class="section" id="ch6">
+    <div class="section-header">
+      <div class="chapter-badge" style="background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);color:var(--red);">06</div>
+      <div class="section-titles">
+        <div class="chapter-label" style="color:var(--red);">Chương 6</div>
+        <div class="section-title">Kỷ Luật Lao Động & Nguyên Tắc Xử Lý Vi Phạm</div>
+      </div>
+    </div>
+
+    <div style="background:rgba(239,68,68,0.04);border:1px solid rgba(239,68,68,0.15);border-radius:12px;padding:16px 20px;margin-bottom:28px;">
+      <p style="font-size:13px;color:var(--muted);line-height:1.7;">Kỷ luật không nhằm xử phạt — mà để đảm bảo môi trường làm việc <strong style="color:var(--text);">công bằng, rõ ràng và hiệu quả.</strong></p>
+    </div>
+
+    <div class="sub-title">Hệ thống cảnh báo (Warning System)</div>
+    <div class="warning-steps">
+      <div class="warning-step w1">
+        <div class="warning-dot">C1</div>
+        <div class="warning-content">
+          <div class="warning-title">Cấp 1 — Nhắc nhở trực tiếp</div>
+          <div class="warning-desc">Vi phạm lần đầu, mức nhẹ, chưa ảnh hưởng vận hành</div>
+        </div>
+      </div>
+      <div class="warning-step w2">
+        <div class="warning-dot">C2</div>
+        <div class="warning-content">
+          <div class="warning-title">Cấp 2 — Written Warning (văn bản)</div>
+          <div class="warning-desc">Tái phạm sau nhắc nhở, hoặc vi phạm ảnh hưởng vận hành nhóm/công ty. Hiệu lực 03 tháng.</div>
+        </div>
+      </div>
+      <div class="warning-step w3">
+        <div class="warning-dot">C3</div>
+        <div class="warning-content">
+          <div class="warning-title">Cấp 3 — Final Warning (lần cuối)</div>
+          <div class="warning-desc">Vi phạm nghiêm trọng hoặc tái phạm nhiều lần sau Written Warning</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sub-title">Hệ quả theo số lần Warning/quý</div>
+    <table class="consequence-table">
+      <tr><th>Số Warning</th><th>Hệ quả áp dụng</th></tr>
+      <tr><td>1 Warning</td><td>Không được đề xuất tăng Level trong kỳ đánh giá quý đó</td></tr>
+      <tr><td>2 Warning</td><td>Đưa vào diện theo dõi đặc biệt về thái độ và hiệu suất làm việc</td></tr>
+      <tr><td>3 Warning</td><td>Xem xét đánh giá lại Level hoặc áp dụng hình thức kỷ luật cấp độ cao hơn</td></tr>
+    </table>
+
+    <div class="sub-title" style="margin-top:28px;">Nguyên tắc thực hiện</div>
+    <ul class="styled-list">
+      <li><strong style="color:var(--text);">Minh bạch & Công bằng:</strong> Mọi quyết định dựa trên bằng chứng khách quan</li>
+      <li><strong style="color:var(--text);">Đầy đủ quy trình:</strong> Mọi vi phạm có biên bản và xác nhận của các bên</li>
+      <li><strong style="color:var(--text);">Bản chất điều chỉnh Level:</strong> Đánh giá lại mức phù hợp — không phải phạt tiền trực tiếp</li>
+      <li><strong style="color:var(--text);">Hỗ trợ cải thiện:</strong> Quản lý có trách nhiệm hỗ trợ nhân sự xây dựng kế hoạch cải thiện</li>
+    </ul>
+  </section>
+
+  <!-- SIGN -->
+  <div class="sign-section" id="sign">
+    <div class="sign-card">
+      <div style="font-size:32px;margin-bottom:16px;">✍️</div>
+      <div class="sign-title">Xác Nhận Đã Đọc & Cam Kết Thực Hiện</div>
+      <p class="sign-sub">Tôi đã đọc, hiểu và cam kết thực hiện đầy đủ các quy định trong<br>Sổ tay Nhân viên Sport Plus.</p>
+      <div class="sign-fields">
+        <div class="sign-field">
+          <div class="sign-field-label">Họ và tên</div>
+        </div>
+        <div class="sign-field">
+          <div class="sign-field-label">Ngày ký</div>
+        </div>
+        <div class="sign-field">
+          <div class="sign-field-label">Chữ ký</div>
+        </div>
+        <div class="sign-field">
+          <div class="sign-field-label">Bộ phận</div>
+        </div>
+      </div>
+      <div style="margin-top:40px;padding-top:24px;border-top:1px solid var(--border);font-size:12px;color:var(--dim);">
+        🏋️ <strong style="color:var(--muted);">Sport Plus</strong> · Elevate Our Life! · Hà Nội 2026 · Tài liệu lưu hành nội bộ
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<script>
+// Sidebar toggle
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('overlay').classList.toggle('open');
+}
+
+// Active nav on scroll
+const sections = document.querySelectorAll('section[id], .sign-section[id]');
+const navItems = document.querySelectorAll('.nav-item');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      navItems.forEach(n => n.classList.remove('active'));
+      const active = document.querySelector(`.nav-item[href="#${entry.target.id}"]`);
+      if (active) active.classList.add('active');
+    }
+  });
+}, { threshold: 0.3 });
+
+document.querySelectorAll('[id]').forEach(el => observer.observe(el));
+
+// Close sidebar on nav click (mobile)
+navItems.forEach(item => {
+  item.addEventListener('click', () => {
+    document.getElementById('sidebar').classList.remove('open');
+    document.getElementById('overlay').classList.remove('open');
+  });
+});
+</script>
+</body>
+</html>
