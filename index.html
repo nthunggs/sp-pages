@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chuỗi Giá Trị Whey — Từ Đồng Cỏ Đến Protein</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #080d1a;
+    --surface: #0f1623;
+    --surface2: #161e2e;
+    --border: #1e2a3d;
+    --text: #e8edf5;
+    --muted: #7a8aaa;
+    --dim: #4a5568;
+
+    --s1: #22c55e;
+    --s2: #f59e0b;
+    --s3: #60a5fa;
+    --s4: #a78bfa;
+    --s5: #fb923c;
+    --s6: #fbbf24;
+
+    --s1-bg: rgba(34,197,94,0.08);
+    --s2-bg: rgba(245,158,11,0.08);
+    --s3-bg: rgba(96,165,250,0.08);
+    --s4-bg: rgba(167,139,250,0.08);
+    --s5-bg: rgba(251,146,60,0.08);
+    --s6-bg: rgba(251,191,36,0.08);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 0 0 60px;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 48px 24px 40px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(180deg, rgba(96,165,250,0.04) 0%, transparent 100%);
+  }
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 5px 12px;
+    border-radius: 100px;
+    margin-bottom: 20px;
+  }
+
+  .hero h1 {
+    font-size: 26px;
+    font-weight: 900;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+
+  .hero h1 span {
+    background: linear-gradient(90deg, #60a5fa, #a78bfa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-sub {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.6;
+    max-width: 320px;
+    margin: 0 auto 24px;
+  }
+
+  .hero-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+  }
+
+  .hero-stat {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 8px;
+    text-align: center;
+  }
+
+  .hero-stat-num {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--text);
+    font-family: 'Inter', monospace;
+    font-feature-settings: 'tnum';
+    display: block;
+  }
+
+  .hero-stat-label {
+    font-size: 10px;
+    color: var(--muted);
+    margin-top: 2px;
+    line-height: 1.3;
+  }
+
+  /* ── STAGE CARD ── */
+  .stage {
+    margin: 0 16px;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+
+  .stage-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 18px;
+  }
+
+  .stage-icon {
+    font-size: 24px;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .stage-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.7;
+  }
+
+  .stage-title {
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    margin-top: 1px;
+  }
+
+  .stage-body {
+    padding: 0 18px 18px;
+  }
+
+  .stage-desc {
+    font-size: 13px;
+    line-height: 1.65;
+    color: var(--muted);
+    margin-bottom: 14px;
+  }
+
+  .stage-desc strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  /* Pills row */
+  .pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 14px;
+  }
+
+  .pill {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 100px;
+    border: 1px solid;
+    font-feature-settings: 'tnum';
+  }
+
+  /* Margin badge */
+  .margin-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 6px 12px;
+    border-radius: 8px;
+    border: 1px solid;
+  }
+
+  .margin-badge-label {
+    font-size: 10px;
+    font-weight: 500;
+    opacity: 0.7;
+  }
+
+  /* Composition bar */
+  .comp-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+  }
+
+  .comp-bar-wrap {
+    border-radius: 6px;
+    overflow: hidden;
+    height: 20px;
+    display: flex;
+    margin-bottom: 8px;
+  }
+
+  .comp-seg {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    font-weight: 700;
+    color: rgba(0,0,0,0.7);
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .comp-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .comp-dot {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  .comp-dot::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+    background: var(--dot-color);
+    flex-shrink: 0;
+  }
+
+  /* Key fact highlight */
+  .key-fact {
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin-top: 12px;
+    border: 1px solid;
+  }
+
+  .key-fact-icon {
+    font-size: 14px;
+    margin-right: 6px;
+  }
+
+  .key-fact p {
+    font-size: 12px;
+    line-height: 1.55;
+    color: var(--muted);
+  }
+
+  .key-fact p strong {
+    color: var(--text);
+    font-weight: 700;
+  }
+
+  /* ── CONNECTOR ── */
+  .connector {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4px 0;
+    position: relative;
+  }
+
+  .connector-line {
+    width: 2px;
+    height: 28px;
+    background: linear-gradient(180deg, var(--from-color), var(--to-color));
+    opacity: 0.4;
+  }
+
+  .connector-arrow {
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 8px solid var(--to-color);
+    opacity: 0.6;
+    margin-top: -1px;
+  }
+
+  /* ── PROCESSING LADDER ── */
+  .ladder {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .ladder-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+  }
+
+  .ladder-rank {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--muted);
+    width: 28px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+
+  .ladder-name {
+    font-size: 13px;
+    font-weight: 700;
+    flex: 1;
+  }
+
+  .ladder-pct {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 1px;
+  }
+
+  .ladder-price {
+    font-size: 12px;
+    font-weight: 800;
+    font-feature-settings: 'tnum';
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .ladder-bar-wrap {
+    width: 100%;
+    height: 4px;
+    background: var(--border);
+    border-radius: 2px;
+    margin-top: 6px;
+    overflow: hidden;
+  }
+
+  .ladder-bar {
+    height: 100%;
+    border-radius: 2px;
+    background: var(--bar-color);
+  }
+
+  /* ── MARGIN MAP ── */
+  .margin-section {
+    margin: 0 16px;
+  }
+
+  .section-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .margin-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .margin-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .margin-label {
+    font-size: 11px;
+    font-weight: 600;
+    width: 100px;
+    flex-shrink: 0;
+    color: var(--muted);
+  }
+
+  .margin-bar-wrap {
+    flex: 1;
+    height: 22px;
+    background: var(--surface2);
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+
+  .margin-bar-fill {
+    height: 100%;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    padding-left: 8px;
+    font-size: 10px;
+    font-weight: 700;
+    color: rgba(0,0,0,0.7);
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  .margin-pct {
+    font-size: 12px;
+    font-weight: 800;
+    width: 42px;
+    text-align: right;
+    flex-shrink: 0;
+    font-feature-settings: 'tnum';
+  }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box {
+    margin: 0 16px;
+    border-radius: 16px;
+    padding: 20px;
+    background: linear-gradient(135deg, rgba(251,191,36,0.08), rgba(251,146,60,0.06));
+    border: 1px solid rgba(251,191,36,0.2);
+  }
+
+  .insight-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .insight-icon {
+    font-size: 20px;
+  }
+
+  .insight-title {
+    font-size: 14px;
+    font-weight: 800;
+    color: #fbbf24;
+  }
+
+  .insight-body {
+    font-size: 13px;
+    line-height: 1.65;
+    color: var(--muted);
+  }
+
+  .insight-body strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  .insight-highlight {
+    display: inline-block;
+    background: rgba(251,191,36,0.15);
+    border: 1px solid rgba(251,191,36,0.3);
+    border-radius: 6px;
+    padding: 1px 7px;
+    color: #fbbf24;
+    font-weight: 700;
+    font-size: 12px;
+  }
+
+  /* ── WHY EXPENSIVE BOX ── */
+  .why-box {
+    margin: 0 16px;
+    border-radius: 14px;
+    padding: 16px;
+    background: rgba(96,165,250,0.05);
+    border: 1px solid rgba(96,165,250,0.15);
+  }
+
+  .why-box-title {
+    font-size: 12px;
+    font-weight: 800;
+    color: #60a5fa;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .why-box p {
+    font-size: 12px;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+
+  .why-box p strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  /* ── SPACER ── */
+  .gap-sm { height: 12px; }
+  .gap-md { height: 20px; }
+  .gap-lg { height: 28px; }
+
+  /* ── STAGE COLORS ── */
+  .s1 { border-color: rgba(34,197,94,0.2); background: var(--s1-bg); }
+  .s1 .stage-header { border-bottom: 1px solid rgba(34,197,94,0.12); }
+  .s1 .stage-label { color: var(--s1); }
+  .s1 .stage-title { color: var(--s1); }
+  .s1 .pill { color: var(--s1); border-color: rgba(34,197,94,0.3); background: rgba(34,197,94,0.08); }
+  .s1 .margin-badge { color: var(--s1); border-color: rgba(34,197,94,0.3); background: rgba(34,197,94,0.1); }
+  .s1 .key-fact { border-color: rgba(34,197,94,0.15); background: rgba(34,197,94,0.04); }
+
+  .s2 { border-color: rgba(245,158,11,0.2); background: var(--s2-bg); }
+  .s2 .stage-header { border-bottom: 1px solid rgba(245,158,11,0.12); }
+  .s2 .stage-label { color: var(--s2); }
+  .s2 .stage-title { color: var(--s2); }
+  .s2 .pill { color: var(--s2); border-color: rgba(245,158,11,0.3); background: rgba(245,158,11,0.08); }
+  .s2 .margin-badge { color: var(--s2); border-color: rgba(245,158,11,0.3); background: rgba(245,158,11,0.1); }
+  .s2 .key-fact { border-color: rgba(245,158,11,0.15); background: rgba(245,158,11,0.04); }
+
+  .s3 { border-color: rgba(96,165,250,0.2); background: var(--s3-bg); }
+  .s3 .stage-header { border-bottom: 1px solid rgba(96,165,250,0.12); }
+  .s3 .stage-label { color: var(--s3); }
+  .s3 .stage-title { color: var(--s3); }
+  .s3 .pill { color: var(--s3); border-color: rgba(96,165,250,0.3); background: rgba(96,165,250,0.08); }
+  .s3 .margin-badge { color: var(--s3); border-color: rgba(96,165,250,0.3); background: rgba(96,165,250,0.1); }
+  .s3 .key-fact { border-color: rgba(96,165,250,0.15); background: rgba(96,165,250,0.04); }
+
+  .s4 { border-color: rgba(167,139,250,0.2); background: var(--s4-bg); }
+  .s4 .stage-header { border-bottom: 1px solid rgba(167,139,250,0.12); }
+  .s4 .stage-label { color: var(--s4); }
+  .s4 .stage-title { color: var(--s4); }
+  .s4 .key-fact { border-color: rgba(167,139,250,0.15); background: rgba(167,139,250,0.04); }
+
+  .s5 { border-color: rgba(251,146,60,0.2); background: var(--s5-bg); }
+  .s5 .stage-header { border-bottom: 1px solid rgba(251,146,60,0.12); }
+  .s5 .stage-label { color: var(--s5); }
+  .s5 .stage-title { color: var(--s5); }
+  .s5 .pill { color: var(--s5); border-color: rgba(251,146,60,0.3); background: rgba(251,146,60,0.08); }
+  .s5 .margin-badge { color: var(--s5); border-color: rgba(251,146,60,0.3); background: rgba(251,146,60,0.1); }
+  .s5 .key-fact { border-color: rgba(251,146,60,0.15); background: rgba(251,146,60,0.04); }
+
+  .s6 { border-color: rgba(251,191,36,0.2); background: var(--s6-bg); }
+  .s6 .stage-header { border-bottom: 1px solid rgba(251,191,36,0.12); }
+  .s6 .stage-label { color: var(--s6); }
+  .s6 .stage-title { color: var(--s6); }
+  .s6 .pill { color: var(--s6); border-color: rgba(251,191,36,0.3); background: rgba(251,191,36,0.08); }
+  .s6 .margin-badge { color: var(--s6); border-color: rgba(251,191,36,0.3); background: rgba(251,191,36,0.1); }
+  .s6 .key-fact { border-color: rgba(251,191,36,0.15); background: rgba(251,191,36,0.04); }
+
+  /* ── FOOTER ── */
+  .footer {
+    text-align: center;
+    padding: 24px 24px 0;
+    font-size: 11px;
+    color: var(--dim);
+    line-height: 1.6;
+  }
+
+  .footer strong {
+    color: var(--muted);
+    font-weight: 600;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-eyebrow">⚗️ Supply Chain Deep Dive</div>
+    <h1>Chuỗi Giá Trị<br><span>Whey Protein</span></h1>
+    <p class="hero-sub">Từ đồng cỏ trang trại đến tub protein trên kệ — 6 tầng tạo giá trị, margin khác nhau hoàn toàn.</p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span class="hero-stat-num">6</span>
+        <div class="hero-stat-label">Tầng chuỗi giá trị</div>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">9:1</span>
+        <div class="hero-stat-label">Whey / Cheese ratio</div>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">60%</span>
+        <div class="hero-stat-label">Brand gross margin</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="gap-lg"></div>
+
+  <!-- STAGE 1 -->
+  <div class="stage s1">
+    <div class="stage-header">
+      <div class="stage-icon">🌱</div>
+      <div>
+        <div class="stage-label">Stage 1</div>
+        <div class="stage-title">Raw Milk — Trang Trại</div>
+      </div>
+    </div>
+    <div class="stage-body">
+      <p class="stage-desc">
+        Điểm khởi đầu của toàn bộ chuỗi. Sữa tươi là nguyên liệu thô commodity — biên lợi nhuận mỏng nhất.
+      </p>
+
+      <div class="comp-label">Thành phần sữa tươi</div>
+      <div class="comp-bar-wrap">
+        <div class="comp-seg" style="width:87%;background:#374151;">87% Nước</div>
+        <div class="comp-seg" style="width:5%;background:#4ade80;color:rgba(0,0,0,0.8);">5%</div>
+        <div class="comp-seg" style="width:3.5%;background:#86efac;color:rgba(0,0,0,0.8);">3.5%</div>
+        <div class="comp-seg" style="width:3.3%;background:#22c55e;color:rgba(0,0,0,0.9);">3.3%</div>
+        <div class="comp-seg" style="width:1.2%;background:#15803d;"></div>
+      </div>
+      <div class="comp-legend">
+        <span class="comp-dot" style="--dot-color:#374151;">87% Nước</span>
+        <span class="comp-dot" style="--dot-color:#4ade80;">5% Lactose</span>
+        <span class="comp-dot" style="--dot-color:#86efac;">3.5% Béo</span>
+        <span class="comp-dot" style="--dot-color:#22c55e;">3.3% Protein</span>
+        <span class="comp-dot" style="--dot-color:#15803d;">0.7% Khoáng</span>
+      </div>
+
+      <div class="key-fact" style="margin-top:14px;">
+        <p><span class="key-fact-icon">💡</span>Trong 3.3% protein đó: <strong>Casein chiếm 80%</strong>, <strong>Whey chỉ chiếm 20%</strong>. Whey từ đầu đã là cấu phần nhỏ.</p>
+      </div>
+
+      <div class="gap-sm"></div>
+      <div class="pills">
+        <span class="pill">$0.40–0.50/lb</span>
+        <span class="pill">~$22–28/100kg</span>
+      </div>
+      <div class="margin-badge">
+        <span>Margin</span>
+        <span style="font-size:16px;font-weight:900;">5–10%</span>
+        <span class="margin-badge-label">Commodity segment</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="connector">
+    <div class="connector-line" style="--from-color:#22c55e;--to-color:#f59e0b;"></div>
+    <div class="connector-arrow" style="--to-color:#f59e0b;"></div>
+  </div>
+
+  <!-- STAGE 2 -->
+  <div class="stage s2">
+    <div class="stage-header">
+      <div class="stage-icon">🧀</div>
+      <div>
+        <div class="stage-label">Stage 2</div>
+        <div class="stage-title">Cheese-making — Ngã Ba Chuỗi Giá Trị</div>
+      </div>
+    </div>
+    <div class="stage-body">
+      <p class="stage-desc">
+        Bước <strong>quyết định nhất</strong>. Sữa được pasteurize, thêm rennet + starter culture. Casein đông lại thành curd → phô mai. Phần lỏng tách ra là <strong>sweet whey</strong> — đây là nguồn nguyên liệu cho sports nutrition.
+      </p>
+
+      <div class="comp-label">Quy trình tách</div>
+      <div style="display:flex;gap:8px;margin-bottom:14px;">
+        <div style="flex:1;background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.2);border-radius:10px;padding:12px;text-align:center;">
+          <div style="font-size:22px;margin-bottom:4px;">🥛</div>
+          <div style="font-size:12px;font-weight:700;color:#f59e0b;">100% Sữa</div>
+          <div style="font-size:10px;color:var(--muted);margin-top:2px;">Input</div>
+        </div>
+        <div style="display:flex;align-items:center;color:var(--dim);font-size:18px;">→</div>
+        <div style="flex:1;background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.2);border-radius:10px;padding:12px;text-align:center;">
+          <div style="font-size:22px;margin-bottom:4px;">🧀</div>
+          <div style="font-size:12px;font-weight:700;color:#fbbf24;">~10% Phô mai</div>
+          <div style="font-size:10px;color:var(--muted);margin-top:2px;">Casein curd</div>
+        </div>
+        <div style="display:flex;align-items:center;color:var(--dim);font-size:18px;">+</div>
+        <div style="flex:1;background:rgba(96,165,250,0.08);border:1px solid rgba(96,165,250,0.2);border-radius:10px;padding:12px;text-align:center;">
+          <div style="font-size:22px;margin-bottom:4px;">💧</div>
+          <div style="font-size:12px;font-weight:700;color:#60a5fa;">~90% Whey</div>
+          <div style="font-size:10px;color:var(--muted);margin-top:2px;">Sweet whey lỏng</div>
+        </div>
+      </div>
+
+      <div class="key-fact">
+        <p><span class="key-fact-icon">🔑</span><strong>1 kg phô mai → ra ~9 kg whey lỏng.</strong> Sản lượng whey luôn gắn chặt với sản lượng cheese. Nhà máy whey không thể đứng riêng — nó là vệ tinh của nhà máy phô mai.</p>
+      </div>
+
+      <div class="gap-sm"></div>
+      <div class="margin-badge">
+        <span>Margin</span>
+        <span style="font-size:16px;font-weight:900;">10–15%</span>
+        <span class="margin-badge-label">Cheese + whey co-product</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="connector">
+    <div class="connector-line" style="--from-color:#f59e0b;--to-color:#60a5fa;"></div>
+    <div class="connector-arrow" style="--to-color:#60a5fa;"></div>
+  </div>
+
+  <!-- STAGE 3 -->
+  <div class="stage s3">
+    <div class="stage-header">
+      <div class="stage-icon">💧</div>
+      <div>
+        <div class="stage-label">Stage 3</div>
+        <div class="stage-title">Whey Lỏng — Vẫn Còn Rất Loãng</div>
+      </div>
+    </div>
+    <div class="stage-body">
+      <p class="stage-desc">
+        Sweet whey lỏng phải xử lý ngay tại nơi — vận chuyển không kinh tế. Đây là lý do Hilmar, Glanbia, Leprino đặt nhà máy <strong>ngay cạnh cụm cheese plant</strong>.
+      </p>
+
+      <div class="comp-label">Thành phần sweet whey lỏng</div>
+      <div class="comp-bar-wrap">
+        <div class="comp-seg" style="width:93%;background:#1e3a5f;">93% Nước</div>
+        <div class="comp-seg" style="width:5%;background:#3b82f6;">5%</div>
+        <div class="comp-seg" style="width:0.9%;background:#60a5fa;"></div>
+        <div class="comp-seg" style="width:1.1%;background:#93c5fd;"></div>
+      </div>
+      <div class="comp-legend">
+        <span class="comp-dot" style="--dot-color:#1e3a5f;">93% Nước</span>
+        <span class="comp-dot" style="--dot-color:#3b82f6;">5% Lactose (đường)</span>
+        <span class="comp-dot" style="--dot-color:#60a5fa;">0.9% Protein</span>
+        <span class="comp-dot" style="--dot-color:#93c5fd;">0.3% Béo + 0.6% Khoáng</span>
+      </div>
+
+      <div class="key-fact">
+        <p><span class="key-fact-icon">⚠️</span>Whey lỏng chủ yếu là <strong>nước + đường lactose</strong>. Protein cực loãng — chỉ 0.9%. Phải lọc, cô đặc mới có giá trị thương mại.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="connector">
+    <div class="connector-line" style="--from-color:#60a5fa;--to-color:#a78bfa;"></div>
+    <div class="connector-arrow" style="--to-color:#a78bfa;"></div>
+  </div>
+
+  <!-- STAGE 4 -->
+  <div class="stage s4">
+    <div class="stage-header">
+      <div class="stage-icon">⚗️</div>
+      <div>
+        <div class="stage-label">Stage 4</div>
+        <div class="stage-title">Thang Công Nghệ Chế Biến</div>
+      </div>
+    </div>
+    <div class="stage-body">
+      <p class="stage-desc">
+        Đây là bước tạo giá trị thật sự. Mỗi nấc là một lớp công nghệ màng lọc và margin nhảy vọt.
+      </p>
+
+      <div class="ladder">
+
+        <div class="ladder-item">
+          <div class="ladder-rank" style="color:#6b7280;">N1</div>
+          <div style="flex:1;">
+            <div class="ladder-name" style="color:#9ca3af;">Sweet Whey Powder</div>
+            <div class="ladder-pct">~11–14% protein · Spray dry đơn giản</div>
+            <div class="ladder-bar-wrap">
+              <div class="ladder-bar" style="width:10%;--bar-color:#4b5563;"></div>
+            </div>
+          </div>
+          <div class="ladder-price" style="color:#6b7280;">$1–1.5<span style="font-size:9px;font-weight:400;">/kg</span></div>
+        </div>
+
+        <div class="ladder-item">
+          <div class="ladder-rank" style="color:#8b5cf6;">N2</div>
+          <div style="flex:1;">
+            <div class="ladder-name" style="color:#a78bfa;">WPC 80</div>
+            <div class="ladder-pct">80% protein · Ultrafiltration (UF)</div>
+            <div class="ladder-bar-wrap">
+              <div class="ladder-bar" style="width:45%;--bar-color:#8b5cf6;"></div>
+            </div>
+          </div>
+          <div class="ladder-price" style="color:#a78bfa;">$8–11<span style="font-size:9px;font-weight:400;">/kg</span></div>
+        </div>
+
+        <div class="ladder-item" style="border-color:rgba(167,139,250,0.3);background:rgba(167,139,250,0.06);">
+          <div class="ladder-rank" style="color:#a78bfa;">N3</div>
+          <div style="flex:1;">
+            <div class="ladder-name" style="color:#c4b5fd;">WPI — Isolate ⭐</div>
+            <div class="ladder-pct">90%+ protein · Microfiltration / Ion Exchange</div>
+            <div class="ladder-bar-wrap">
+              <div class="ladder-bar" style="width:70%;--bar-color:#a78bfa;"></div>
+            </div>
+          </div>
+          <div class="ladder-price" style="color:#c4b5fd;">$14–18<span style="font-size:9px;font-weight:400;">/kg</span></div>
+        </div>
+
+        <div class="ladder-item">
+          <div class="ladder-rank" style="color:#7c3aed;">N4</div>
+          <div style="flex:1;">
+            <div class="ladder-name" style="color:#8b5cf6;">WPH — Hydrolysate</div>
+            <div class="ladder-pct">Enzyme thủy phân → peptide · Clinical + premium</div>
+            <div class="ladder-bar-wrap">
+              <div class="ladder-bar" style="width:100%;--bar-color:#6d28d9;"></div>
+            </div>
+          </div>
+          <div class="ladder-price" style="color:#8b5cf6;">$20–30<span style="font-size:9px;font-weight:400;">/kg</span></div>
+        </div>
+
+      </div>
+
+      <div class="key-fact">
+        <p><span class="key-fact-icon">🏭</span>Chốt chặn ở đây là <strong>capex màng lọc + know-how vận hành</strong>. Glanbia, Hilmar, Leprino — ít nhà chơi được. WPI record high năm 2024–25 bắt nguồn từ đây.</p>
+      </div>
+
+      <div class="gap-sm"></div>
+      <div style="font-size:12px;color:var(--muted);padding:10px 12px;background:rgba(167,139,250,0.05);border:1px solid rgba(167,139,250,0.15);border-radius:8px;">
+        <strong style="color:#a78bfa;">Provon® (Glanbia)</strong> = WPI dòng chính · <strong style="color:#a78bfa;">Avonlac® (Glanbia)</strong> = WPC 80 dòng chính
+      </div>
+
+      <div class="gap-sm"></div>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <div style="flex:1;height:1px;background:rgba(167,139,250,0.15);"></div>
+        <div style="font-size:10px;color:var(--muted);">Margin processor</div>
+        <div style="flex:1;height:1px;background:rgba(167,139,250,0.15);"></div>
+      </div>
+      <div class="gap-sm"></div>
+      <div class="margin-badge" style="color:#a78bfa;border-color:rgba(167,139,250,0.3);background:rgba(167,139,250,0.1);">
+        <span>Margin</span>
+        <span style="font-size:16px;font-weight:900;">25–40%</span>
+        <span class="margin-badge-label">Chốt chặn công nghệ</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="connector">
+    <div class="connector-line" style="--from-color:#a78bfa;--to-color:#fb923c;"></div>
+    <div class="connector-arrow" style="--to-color:#fb923c;"></div>
+  </div>
+
+  <!-- STAGE 5 -->
+  <div class="stage s5">
+    <div class="stage-header">
+      <div class="stage-icon">🏭</div>
+      <div>
+        <div class="stage-label">Stage 5</div>
+        <div class="stage-title">Contract Manufacturing</div>
+      </div>
+    </div>
+    <div class="stage-body">
+      <p class="stage-desc">
+        Mua WPC/WPI bulk (bao 25kg), blend với flavoring, additives, đóng gói thành tub thương mại. Đây là nơi <strong>tạo ra SKU</strong> mà người tiêu dùng cầm trên tay.
+      </p>
+
+      <div class="comp-label">Thành phần blend điển hình</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:14px;">
+        <div style="background:rgba(251,146,60,0.06);border:1px solid rgba(251,146,60,0.15);border-radius:8px;padding:10px;">
+          <div style="font-size:16px;margin-bottom:4px;">🥤</div>
+          <div style="font-size:12px;font-weight:700;color:#fb923c;">Whey Base</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:2px;">WPC80 / WPI bulk</div>
+        </div>
+        <div style="background:rgba(251,146,60,0.06);border:1px solid rgba(251,146,60,0.15);border-radius:8px;padding:10px;">
+          <div style="font-size:16px;margin-bottom:4px;">🍫</div>
+          <div style="font-size:12px;font-weight:700;color:#fb923c;">Flavoring System</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:2px;">Cocoa, vanilla, sucralose</div>
+        </div>
+        <div style="background:rgba(251,146,60,0.06);border:1px solid rgba(251,146,60,0.15);border-radius:8px;padding:10px;">
+          <div style="font-size:16px;margin-bottom:4px;">💊</div>
+          <div style="font-size:12px;font-weight:700;color:#fb923c;">Functional Add</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:2px;">Enzyme, BCAA, Creatine</div>
+        </div>
+        <div style="background:rgba(251,146,60,0.06);border:1px solid rgba(251,146,60,0.15);border-radius:8px;padding:10px;">
+          <div style="font-size:16px;margin-bottom:4px;">📦</div>
+          <div style="font-size:12px;font-weight:700;color:#fb923c;">Packaging</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:2px;">2lb / 5lb tub, sachet</div>
+        </div>
+      </div>
+
+      <div class="pills">
+        <span class="pill">Nutrablend Foods</span>
+        <span class="pill">Enovate Biolife</span>
+        <span class="pill">Capstone Nutrition</span>
+      </div>
+
+      <div class="margin-badge">
+        <span>Margin CM</span>
+        <span style="font-size:16px;font-weight:900;">15–25%</span>
+        <span class="margin-badge-label">On cost</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="connector">
+    <div class="connector-line" style="--from-color:#fb923c;--to-color:#fbbf24;"></div>
+    <div class="connector-arrow" style="--to-color:#fbbf24;"></div>
+  </div>
+
+  <!-- STAGE 6 -->
+  <div class="stage s6">
+    <div class="stage-header">
+      <div class="stage-icon">🏆</div>
+      <div>
+        <div class="stage-label">Stage 6</div>
+        <div class="stage-title">Brand & Distribution</div>
+      </div>
+    </div>
+    <div class="stage-body">
+      <p class="stage-desc">
+        Đây là nơi <strong>capture nhiều margin nhất</strong>. Không cần sở hữu nhà máy, không cần hiểu màng lọc UF — chỉ cần brand trust, marketing, và distribution network.
+      </p>
+
+      <div class="key-fact">
+        <p><span class="key-fact-icon">💰</span>Một tub WPI 2lb: <strong>cost-to-make $18–22</strong> (whey + packaging + CM fee), bán retail <strong>$40–60</strong>. Brand capture <strong>gross margin 40–60%</strong>.</p>
+      </div>
+
+      <div class="gap-sm"></div>
+      <div class="comp-label">Ví dụ brand playbook</div>
+      <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:14px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 12px;background:rgba(251,191,36,0.06);border:1px solid rgba(251,191,36,0.15);border-radius:8px;">
+          <span style="font-size:12px;font-weight:700;color:#fbbf24;">Transparent Labs</span>
+          <span style="font-size:11px;color:var(--muted);">DTC focus · 0 retail</span>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 12px;background:rgba(251,191,36,0.06);border:1px solid rgba(251,191,36,0.15);border-radius:8px;">
+          <span style="font-size:12px;font-weight:700;color:#fbbf24;">Optimum Nutrition</span>
+          <span style="font-size:11px;color:var(--muted);">Mass retail · Trust legacy</span>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 12px;background:rgba(251,191,36,0.06);border:1px solid rgba(251,191,36,0.15);border-radius:8px;">
+          <span style="font-size:12px;font-weight:700;color:#fbbf24;">RAW Nutrition (CBUM)</span>
+          <span style="font-size:11px;color:var(--muted);">Influencer-led · 0 cows owned</span>
+        </div>
+      </div>
+
+      <div class="margin-badge">
+        <span>Gross Margin</span>
+        <span style="font-size:16px;font-weight:900;">40–60%</span>
+        <span class="margin-badge-label">Chốt chặn marketing</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="gap-lg"></div>
+
+  <!-- MARGIN MAP -->
+  <div class="margin-section">
+    <div class="section-title">Margin Map — Ai Capture Bao Nhiêu</div>
+    <div class="margin-rows">
+
+      <div class="margin-row">
+        <div class="margin-label">🌱 Trang trại</div>
+        <div class="margin-bar-wrap">
+          <div class="margin-bar-fill" style="width:10%;background:#22c55e;">5–10%</div>
+        </div>
+        <div class="margin-pct" style="color:#22c55e;">10%</div>
+      </div>
+
+      <div class="margin-row">
+        <div class="margin-label">🧀 Cheese maker</div>
+        <div class="margin-bar-wrap">
+          <div class="margin-bar-fill" style="width:15%;background:#f59e0b;">10–15%</div>
+        </div>
+        <div class="margin-pct" style="color:#f59e0b;">15%</div>
+      </div>
+
+      <div class="margin-row">
+        <div class="margin-label">⚗️ Processor</div>
+        <div class="margin-bar-wrap">
+          <div class="margin-bar-fill" style="width:40%;background:#a78bfa;">25–40%</div>
+        </div>
+        <div class="margin-pct" style="color:#a78bfa;">40%</div>
+      </div>
+
+      <div class="margin-row">
+        <div class="margin-label">🏭 Contract MFG</div>
+        <div class="margin-bar-wrap">
+          <div class="margin-bar-fill" style="width:25%;background:#fb923c;">15–25%</div>
+        </div>
+        <div class="margin-pct" style="color:#fb923c;">25%</div>
+      </div>
+
+      <div class="margin-row">
+        <div class="margin-label">🏆 Brand</div>
+        <div class="margin-bar-wrap">
+          <div class="margin-bar-fill" style="width:60%;background:#fbbf24;">40–60%</div>
+        </div>
+        <div class="margin-pct" style="color:#fbbf24;">60%</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="gap-lg"></div>
+
+  <!-- WHY EXPENSIVE -->
+  <div class="why-box">
+    <div class="why-box-title">📈 Tại sao WPI đắt kỷ lục 2024–25?</div>
+    <p>Vấn đề nằm ở <strong>Stage 2</strong>, không phải Glanbia. Cheese demand toàn cầu tăng nhưng <strong>đàn bò sữa Mỹ/EU không mở rộng kịp</strong> → nguồn whey ra eo hẹp → WPI/WPC leo giá. Khi thấy giá WPI tăng, đó là tín hiệu từ tận trang trại bò sữa — upstream cách 4 tầng.</p>
+  </div>
+
+  <div class="gap-lg"></div>
+
+  <!-- INSIGHT -->
+  <div class="insight-box">
+    <div class="insight-header">
+      <span class="insight-icon">🎯</span>
+      <div class="insight-title">Vị Trí Chiến Lược — Nutripeak</div>
+    </div>
+    <div class="insight-body">
+      <p>Anh đang đứng đúng ở <span class="insight-highlight">Stage 5 + 6</span> — vị trí kinh tế nhất trong chuỗi. Không cần đua với Glanbia ở Stage 4 (impossible — capex hàng trăm triệu USD), không cần đua với farmer ở Stage 1 (zero margin).</p>
+      <br>
+      <p><strong>Playbook:</strong> Mua raw material chuẩn từ Glanbia → capture margin ở blending + branding. Đây cũng là playbook của CBUM/RAW Nutrition, Transparent Labs — <strong>họ không sở hữu một con bò nào</strong> nhưng vẫn capture lớn nhất chuỗi.</p>
+    </div>
+  </div>
+
+  <div class="gap-lg"></div>
+
+  <div class="footer">
+    <strong>Nutripeak Vietnam</strong> · Whey Value Chain Analysis<br>
+    Dữ liệu tham chiếu: Glanbia, Hilmar, USDA Dairy Market · 2024–25
+  </div>
+
+</div>
+</body>
+</html>
